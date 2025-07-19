@@ -1,6 +1,6 @@
 # Simple Todo App
 
-MyTodoApp is designed to offer a simple, but effective way to manage a todo list.
+MyTodoApp is designed to offer a simple, but effective way to manage a todo list. Images are located in the "~/projects/se_project_todo-app/images".
 
 ## Functionality
 
