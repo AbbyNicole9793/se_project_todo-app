@@ -1,17 +1,17 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+MyTodoApp is designed to offer a simple, but effective way to manage a todo list.
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+It allows you to create tasks and set a date for them. You can then check them off as you finish them or delete them if necessary.
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+Javascript, html, and css are all used to help create this app.
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+(https://abbynicole9793.github.io/se_project_todo-app/)
