@@ -1,8 +1,7 @@
-import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
-import { initialTodos, validationConfig } from "../utils/constants.js"
-import Todo from "../components/Todo.js"
-import FormValidator from '../components/FormValidator.js';
-
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+import { initialTodos, validationConfig } from "../utils/constants.js";
+import Todo from "../components/Todo.js";
+import FormValidator from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -19,21 +18,17 @@ const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
 
-
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template")
-  const todoElement = todo.getView()
-  return todoElement
+  const todo = new Todo(data, "#todo-template");
+  const todoElement = todo.getView();
+  return todoElement;
 
   // // Apply id and for attributes.
   // // The id will initially be undefined for new todos.
-  
 
   // // If a due date has been set, parsing this it with `new Date` will return a
   // // number. If so, we display a string version of the due date in the todo.
-  
 
-  
   // return todoElement;
 };
 
@@ -54,20 +49,20 @@ addTodoForm.addEventListener("submit", (evt) => {
   const date = new Date(dateInput);
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
-  const id = uuidv4()
+  const id = uuidv4();
   const values = { name, date, id };
-  const todo = generateTodo(values);
-  todosList.append(todo);
+  const renderTodo = (item) => {
+    const todo = generateTodo(item);
+    todosList.append(todo);
+  };
+  renderTodo(values)
   closeModal(addTodoPopup);
-  todoFormValidator.resetValidation()
+  todoFormValidator.resetValidation();
 });
 
 initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-  const counter = document.querySelector(".counter__text")
-  counter() + 1;
+  renderTodo(item)
 });
 
 const todoFormValidator = new FormValidator(validationConfig, addTodoForm);
-todoFormValidator.enableValidation()
+todoFormValidator.enableValidation();
