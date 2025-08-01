@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
+import Section from "../utils/Section.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
@@ -9,6 +10,18 @@ const addTodoForm = addTodoPopup.querySelector(".popup__form");
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 // const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
+
+const section = new Section({
+  items: initialTodos,
+  renderer: (item) => {
+      const todo = generateTodo(item);
+      todosList.append(todo);
+  },
+  containerSelector: ".todos__list"
+})
+
+section.renderItems()
+
 
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
@@ -31,11 +44,11 @@ const generateTodo = (data) => {
 
   // return todoElement;
 };
-const renderTodo = (item) => {
-    const todo = generateTodo(item);
-    todosList.append(todo);
-  };
-  
+// const renderTodo = (item) => {
+//     const todo = generateTodo(item);
+//     todosList.append(todo);
+//   };
+
 addTodoButton.addEventListener("click", () => {
   openModal(addTodoPopup);
 });
@@ -56,14 +69,15 @@ addTodoForm.addEventListener("submit", (evt) => {
   const id = uuidv4();
   const values = { name, date, id };
   
-  renderTodo(values)
+  // renderTodo(values)
+  section.addItem(element)
   closeModal(addTodoPopup);
   todoFormValidator.resetValidation();
 });
 
-initialTodos.forEach((item) => {
-  renderTodo(item)
-});
+// initialTodos.forEach((item) => {
+//   renderTodo(item)
+// });
 
 const todoFormValidator = new FormValidator(validationConfig, addTodoForm);
 todoFormValidator.enableValidation();
