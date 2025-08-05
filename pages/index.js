@@ -48,20 +48,6 @@ addTodoButton.addEventListener("click", () => {
 })
 
 
-// const openModal = (modal) => {
-//   modal.classList.add("popup_visible");
-// };
-
-// const closeModal = (modal) => {
-//   modal.classList.remove("popup_visible");
-// };
-
-// const renderTodo = (item) => {
-//     const todo = generateTodo(item);
-//     todosList.append(todo);
-//   };
-
-
 
 
 // addTodoForm.addEventListener("submit", (evt) => {
@@ -83,9 +69,6 @@ addTodoButton.addEventListener("click", () => {
 //   todoFormValidator.resetValidation();
 // });
 
-// initialTodos.forEach((item) => {
-//   renderTodo(item)
-// });
 
 const todoFormValidator = new FormValidator(validationConfig, addTodoForm);
 todoFormValidator.enableValidation();
