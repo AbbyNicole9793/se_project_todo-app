@@ -6,23 +6,22 @@ class PopupWithForm extends Popup {
         super({popupSelector})
         this._handleFormSubmit = handleFormSubmit
         this._popupForm = this._popupSelector.querySelector(".popup__form")
-        console.log(this._popupForm.querySelectorAll(".popup__input"))
-        this._input = this._popupForm.querySelectorAll(".popup__input")
+        this._inputs = this._popupForm.querySelectorAll(".popup__input")
         this._increment = increment
     }
 
     _getInputValues() {
         const values = { };
-        this._input.forEach((input) => {
+        this._inputs.forEach((input) => {
            values[input.name] = input.value
-           if (input.name == "date") {
+           if (input.name === "date") {
                
             const date = new Date(input.value);
             date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
             values[input.name] = date
            }
             const id = uuidv4()
-            values[input.id] = id
+            values[input.name] = id
 
         })
         return values
@@ -36,10 +35,6 @@ class PopupWithForm extends Popup {
         })
     }
 }
-const popup = new Popup({
-        popupSelector: ".popup__content"
-    })
-
     
 
 

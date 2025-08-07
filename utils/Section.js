@@ -1,10 +1,10 @@
-import { generateTodo } from "../pages/index.js"
+import { section } from "../pages/index.js"
 
 class Section {
     constructor({ items, renderer, containerSelector}) {
         this._renderedItems = items
         this._renderer = renderer
-        this._selector = document.querySelector(containerSelector)
+        this._container = document.querySelector(containerSelector)
         
     }
     renderItems() {
@@ -14,8 +14,8 @@ class Section {
         }
 
     addItem(item) {
-            const todo = generateTodo(item)
-            this._selector.append(todo)
+            const todo = this._renderer(item)
+            this._container.append(todo)
         }
 }
 
