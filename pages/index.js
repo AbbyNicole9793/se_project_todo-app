@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
@@ -25,9 +25,16 @@ function handleDelete(completed) {
   }
 }
 
+function increment() {
+    todoCounter.updateTotal(true)
+}
+
+function incrementDown() {
+    todoCounter.updateTotal(false)
+}
 
 export const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete, incrementDown);
   const todoElement = todo.getView();
   return todoElement;
 
@@ -36,9 +43,13 @@ export const generateTodo = (data) => {
 
 
 const addTodo = new PopupWithForm({ popupSelector: "#add-todo-popup",
-  handleFormSubmit: (evt) => {
+  handleFormSubmit: (values) => {
     
-  }
+    section.addItem(values)
+    addTodo.close();
+    todoFormValidator.resetValidation();
+  },
+  increment
 
 })
 

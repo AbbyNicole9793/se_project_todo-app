@@ -3,7 +3,6 @@ class TodoCounter {
   // selector is the selector for the counter text element
   constructor(todos, selector) {
     this._element = document.querySelector(selector)
-    this._completed = 0
     this._completed = todos.filter((todo) => todo.completed).length // number of completed todos
     this._total = todos.length // the total number of todos
     this._updateText()
@@ -27,6 +26,13 @@ class TodoCounter {
   // Call this when a to-do is deleted, or when a to-do is   
   // created via the form. 
   updateTotal = (increment) => {
+    if (increment === true ) {
+        this._total += 1
+    } else {
+        this._total -= 1
+    }
+
+    
     // if increment is true, add 1 to this._total. Otherwise, 
     // subtract 1. In either case, call the method to update the  
     // text content.  

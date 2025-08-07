@@ -1,21 +1,24 @@
 class Todo {
-    constructor(data, selector, handleCheck, handleDelete) {
+    constructor(data, selector, handleCheck, handleDelete, incrementDown) {
         this._completed = data.completed
         this._data = data
         this._todoTemplate = document.querySelector(selector)
         this._handleCheck = handleCheck
         this._handleDelete = handleDelete
+        this._increment = incrementDown
+
     }
 
     _setEventListeners() {
         this._todoCheckboxEl.addEventListener("change", () => {
-            
+            this._completed = !this._completed
             this._handleCheck(this._completed)
-            this._data.completed = !this._data.completed
+            
         })
         this._todoDeleteBtn.addEventListener("click", () => {
             this._todoElement.remove();
             this._handleDelete(this._completed)
+            this._increment()
   });
 
     }
