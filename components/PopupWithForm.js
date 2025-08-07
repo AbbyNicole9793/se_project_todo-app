@@ -21,7 +21,7 @@ class PopupWithForm extends Popup {
             values[input.name] = date
            }
             const id = uuidv4()
-            values[input.name] = id
+            values[input.id] = id
 
         })
         return values
