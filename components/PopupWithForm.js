@@ -12,6 +12,7 @@ class PopupWithForm extends Popup {
 
     _getInputValues() {
         const values = { };
+        const id = uuidv4()
         this._inputs.forEach((input) => {
            values[input.name] = input.value
            if (input.name === "date") {
@@ -20,11 +21,13 @@ class PopupWithForm extends Popup {
             date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
             values[input.name] = date
            }
-            const id = uuidv4()
-            values[input.id] = id
+            
+            
 
         })
+        values.id = id
         return values
+        
     }
     setEventListeners() {
         super.setEventListeners()

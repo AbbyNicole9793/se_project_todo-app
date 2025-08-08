@@ -2,7 +2,7 @@
 import { initialTodos, validationConfig } from "../utils/constants.js";
 import Todo from "../components/Todo.js";
 import FormValidator from "../components/FormValidator.js";
-import Section from "../components/section.js";
+import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import TodoCounter from "../components/TodoCounter.js"
 
@@ -38,12 +38,15 @@ export const generateTodo = (data) => {
 
 };
 
-
+function generateItem(values) {
+  const todosList = generateTodo(values)
+  section.addItem(todosList)
+}
 
 const addTodo = new PopupWithForm({ popupSelector: "#add-todo-popup",
   handleFormSubmit: (values) => {
     
-    section.addItem(values)
+    generateItem(values)
     addTodo.close();
     todoFormValidator.resetValidation();
   },
@@ -63,8 +66,7 @@ todoFormValidator.enableValidation();
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-      const todo = generateTodo(item);
-      todosList.append(todo)
+      generateItem(item)
       
   },
   containerSelector: ".todos__list"
